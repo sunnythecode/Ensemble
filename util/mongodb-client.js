@@ -126,29 +126,29 @@ async function uploadClothes(req, res) {
     }
 }
 
-async function getShirtsByUserId(userId) {
+async function getClothesTypeByUserId(userId, typeString) {
     try {
         await client.connect(); // Connect to the database
         const database = client.db(); // Replace with your database name
         const collection = database.collection('clothes'); // Replace with your collection name
 
         // Find all shirts associated with the given user ID
-        const shirts = await collection.find({ userID: new ObjectId(userId), type: 'shirt' }).toArray();
+        const clothes = await collection.find({ userID: new ObjectId(userId), type: typeString }).toArray();
         
 
         // Convert each shirt's image data to Base64
-        const shirtsWithBase64Images = shirts.map(shirt => {
-            const base64Image = shirt.image ? shirt.image.toString('base64') : null; // Convert Buffer to Base64
+        const clothesWithBase64Images = clothes.map(cloth => {
+            const base64Image = cloth.image ? cloth.image.toString('base64') : null; // Convert Buffer to Base64
             return {
-                ...shirt,
+                ...cloth,
                 base64Image: base64Image ? `data:image/jpeg;base64,${base64Image}` : null // Create Data URL
             };
         });
         
 
-        return shirtsWithBase64Images; // Return the shirts with Base64 images
+        return clothesWithBase64Images; // Return the shirts with Base64 images
     } catch (error) {
-        console.error('Error retrieving shirts:', error);
+        console.error('Error retrieving clothes:', error);
         throw error; // Rethrow the error for further handling
     } finally {
         await client.close(); // Ensure the client is closed after the operation
@@ -156,4 +156,4 @@ async function getShirtsByUserId(userId) {
 }
 
 // checkLogin("sunny.bajamahal@gmail.com", "bruh");
-module.exports = { createLogin, checkLogin, checkIdExists, uploadClothes, getShirtsByUserId };
+module.exports = { createLogin, checkLogin, checkIdExists, uploadClothes, getClothesTypeByUserId };

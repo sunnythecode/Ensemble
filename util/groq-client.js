@@ -1,12 +1,52 @@
 const Groq = require("groq-sdk"); // Use require to import the Groq SDK
-const { getShirtsByUserId } = require('../util/mongodb-client');
+const { getClothesTypeByUserId } = require('../util/mongodb-client');
 
 const groq = new Groq({ apiKey: "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" }); // Initialize Groq with your API key
 
-async function sendChat() {
-    const base64Outputs = await getShirtsByUserId("67134047645b972a0f1ecdb5");
-    const base64URL = base64Outputs[0].base64Image;
-    console.log(base64Outputs[0]._id);
+function findFirstDigit(str) {
+    const match = str.match(/\d/); // \d matches a single digit
+    return match ? match[0] : null; // Return the matched digit or null if not found
+}
+
+async function getRankingOfShirts(userID, context) {
+    const shirts = await getClothesTypeByUserId(userID, "shirt");
+    const pants = await getClothesTypeByUserId(userID, "pant");
+
+
+    const updatedShirts = await Promise.all(
+        shirts.map(async (shirt) => {
+            const ranking = await getRankingSinglePiece(shirt, context);
+            return { ...shirt, Ranking: ranking.Ranking, Message: ranking.Message };
+        })
+    );
+
+    const maxRankingShirt = updatedShirts.reduce((max, shirt) => 
+        shirt.Ranking > max.Ranking ? shirt : max
+    );
+
+    const updatedPants = await Promise.all(
+        pants.map(async (pant) => {
+            const ranking = await getRankingSinglePiece(pant, context);
+            return { ...pant, Ranking: ranking.Ranking, Message: ranking.Message };
+        })
+    );
+
+    const maxRankingPant = updatedPants.reduce((max, pant) => 
+        pant.Ranking > max.Ranking ? pant : max
+    );
+
+    console.log(maxRankingShirt.name);
+    console.log(maxRankingShirt.Message);
+
+    console.log(maxRankingPant.name);
+    console.log(maxRankingPant.Message);
+
+
+    return {BestShirt: maxRankingShirt, BestPant: maxRankingPant};
+
+}
+async function getRankingSinglePiece(pieceElem, contextString) {
+    const base64URL = pieceElem.base64Image;
     const chatCompletion = await groq.chat.completions.create({
         "messages": [
             {
@@ -37,7 +77,9 @@ async function sendChat() {
         "stop": null
     });
 
-    console.log(chatCompletion.choices[0].message.content);
+    const message = chatCompletion.choices[0].message.content;
+    const rank = findFirstDigit(message);
+    return {Ranking: rank, Message: message}; 
 }
 
-sendChat();
+const k = getRankingOfShirts("67134047645b972a0f1ecdb5");
