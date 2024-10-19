@@ -84,7 +84,7 @@ router.get('/results', async (req, res) => {
 
       // Render the Pug template with the data
       const clothes = await getRankingOfClothes(userID, t);
-      res.render("results", {clothes, t} );
+      res.render("results", {clothes, t, userID} );
     }
     
   } catch (error) {
