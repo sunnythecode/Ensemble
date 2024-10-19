@@ -7,6 +7,7 @@
     "test": "NODE_ENV=sandbox node ./bin/www"
   },
   "dependencies": {
+    "@deepgram/sdk": "^3.8.1",
     "body-parser": "*",
     "cookie-parser": "*",
     "debug": "*",

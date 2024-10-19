@@ -54,7 +54,7 @@ async function getRankingSinglePiece(pieceElem, contextString) {
                 "content": [
                     {
                         "type": "text",
-                        "text": "Rank this piece of clothing out of 10 based on it being worn for the following context: The clothing is to be worn at a formal dinner. Enter your ranking on one line, in the format: \n \n Rank: {ranking}/10 \n {Explanation}"
+                        "text": `Rank this piece of clothing out of 10 based on it being worn for the following ${contextString}: The clothing is to be worn at a formal dinner. Enter your ranking on one line, in the format: \n \n Rank: {ranking}/10 \n {Explanation}`
                     },
                     {
                         "type": "image_url",
@@ -82,4 +82,5 @@ async function getRankingSinglePiece(pieceElem, contextString) {
     return {Ranking: rank, Message: message}; 
 }
 
-const k = getRankingOfClothes("67134047645b972a0f1ecdb5");
+//const k = getRankingOfClothes("67134047645b972a0f1ecdb5");
+module.exports = { getRankingOfClothes };

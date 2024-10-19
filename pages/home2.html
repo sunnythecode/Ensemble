@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f4f4f9; /* Fallback color */
             color: #333;
             display: flex;
             flex-direction: column;
@@ -15,23 +15,37 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden; /* Prevent body overflow */
+            background-image: url('../pages/image.jpg');
+            background-size: cover; /* Make the image cover the entire background */
+            background-position: center; /* Center the image */
         }
+
 
         header {
             width: 100%;
-            background-color: #e0e0e5;
+            background-color: rgba(224, 224, 229, 0.9); /* Semi-transparent background */
             display: flex;
             justify-content: space-between;
-            padding: 10px 30px;
+            padding: 10px 0px;
             align-items: center;
+            position: fixed; /* Keep header fixed at the top */
+            top: 0; /* Position it at the top */
+            left: 0;
+            right: 0;
+            z-index: 100; /* Ensure it's above other elements */
         }
 
         header img {
             height: 40px;
         }
 
+        header nav {
+            display: flex; /* Use flexbox for nav */
+            gap: 20px; /* Space between links */
+        }
+
         header nav a {
-            margin-left: 20px;
             text-decoration: none;
             color: #4a4a4a;
             font-size: 16px;
@@ -47,10 +61,22 @@
             color: white;
         }
 
+        main {
+            text-align: center;
+            color: white;
+            padding-top: 80px; /* Prevent content from being hidden behind the fixed header */
+            width: 100%; /* Ensure main takes full width */
+            height: calc(100vh - 80px); /* Adjust for fixed header height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+
         h1 {
             margin-bottom: 20px;
             font-size: 2.5em;
-            color: #4a90e2;
+            color: #ffffff;
         }
 
         p {
@@ -93,18 +119,39 @@
                 transform: translateY(-10px);
             }
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+
+            header {
+                flex-direction: column; /* Stack header items vertically on smaller screens */
+                align-items: center; /* Center items */
+            }
+
+            header nav {
+                margin-top: 10px; /* Space between logo and nav */
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://via.placeholder.com/100x40.png?text=Clueless+Logo" alt="Clueless Logo">
+        <img src="../pages/Clueless.png" alt="Clueless Logo" style="height: 60px;">
         <nav>
-            <a href="#">Log In</a>
-            <a href="#">Sign Up</a>
+            <a href="/login">Log In</a>
+            <a href="/signup">Sign Up</a>
         </nav>
     </header>
 
-    <main style="text-align: center;">
+    <main>
         <h1>A Smarter Way to Style</h1>
         <p><span class="highlight">Clueless</span> is your personal AI-powered assistant to organize and recommend the perfect wardrobe.</p>
         <p>Get tailored outfit ideas and say goodbye to wardrobe confusion!</p>

@@ -15,6 +15,9 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background-image: url('../pages/image.jpg');
+            background-size: cover; /* Make the image cover the entire background */
+            background-position: center; /* Center the image */
         }
         h1 {
             margin-bottom: 20px;
@@ -71,6 +74,8 @@
         <div id="recordingIndicator" class="recording-indicator">Recording...</div>
         <audio id="audioPlayer" controls style="display: none;"></audio>
         <a id="downloadLink" download="voice_memo.webm">Download Memo</a>
+        <button id="submitButton">Submit Recording</button>
+        <div id="transcriptionOutput"></div>
     </div>
 
     <script src="/scripts/record.js"></script>

@@ -1,0 +1,78 @@
+// views/recommendations.pug
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Outfit Recommendations - Wardrobe Assistant
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .recommendation-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      .item {
+        margin: 20px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #eaeaea;
+      }
+      .item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .item h2 {
+        margin: 10px 0 5px;
+      }
+      .item p {
+        margin: 5px 0;
+        color: #555;
+      }
+      button {
+        background-color: #50b3a2;
+        color: white;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      button:hover {
+        background-color: #3a8f7f;
+      }
+
+  body
+    .recommendation-container
+      h1 Today's Outfit Recommendations
+      // Recommended Shirt
+      .item
+        h2 Recommended Shirt
+        img(src=clothes.BestShirt.base64Image alt="Recommended Shirt")
+        p Review: #{clothes.BestShirt.Message}
+
+      // Recommended Pant
+      .item
+        h2 Recommended Pant
+        img(src=clothes.BestPant.base64Image alt="Recommended Pant")
+        p Review: #{clothes.BestPant.Message}
+
+      // Button to return to the upload page or perform other actions
+      button(onclick="window.location.href='/upload-clothes'") Go Back to Upload Clothes
