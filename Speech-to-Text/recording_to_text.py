@@ -7,7 +7,6 @@ from deepgram import (
     PrerecordedOptions,
     FileSource
 )
-import asyncio
 from datetime import datetime
 import mimetypes
 
@@ -53,66 +52,22 @@ def record_audio(duration):
     print(f"Audio saved to '{file_path}'.")
     return file_path
 
-async def transcribe_audio(deepgram_client, audio_file_path):
-    """
-    Sends the audio file to Deepgram for transcription.
-
-    Args:
-        deepgram_client (Deepgram): Initialized Deepgram client.
-        audio_file_path (str): Path to the audio file to transcribe.
-
-    Returns:
-        dict: Transcription response from Deepgram.
-    """
-    try:
-        with open(audio_file_path, 'rb') as audio:
-            buffer_data=audio.read()
-            source = FileSource(buffer=buffer_data, mimetype= 'audio/wav')
-
-            options = PrerecordedOptions(
-                model= 'nova-2',
-                smart_format=True,
-            )
-            print("\nSending audio to Deepgram for transcription...")
-            response = deepgram_client.listen.prerecorded.v("1").transcribe_file(source, options)
-            return response
-    except Exception as e:
-        print(f"Error during transcription: {e}")
-        sys.exit(1)
-
-def extract_transcript(response):
-    """
-    Extracts the transcript text from Deepgram's response.
-
-    Args:
-        response (dict): Deepgram transcription response.
-
-    Returns:
-        str: Transcribed text.
-    """
-    try:
-        transcript = response['results']['channels'][0]['alternatives'][0]['transcript']
-        return transcript
-    except (KeyError, IndexError):
-        print("No transcription results found.")
-        return ""
-
 def main():
     # Initialize
     create_recordings_directory()
 
     # Retrieve Deepgram API key from environment variable
-    deepgram_api_key = "66d32a0950d3e2255dad552579573b58199d5f9a"
+    deepgram_api_key = "66d32a0950d3e2255dad552579573b58199d5f9a" 
     if not deepgram_api_key:
         print("Error: DEEPGRAM_API_KEY environment variable not set.")
         print("Please set it using the following command (replace <your_api_key>):")
         print("  On Windows (Command Prompt): set DEEPGRAM_API_KEY=<your_api_key>")
         print("  On Windows (PowerShell): $env:DEEPGRAM_API_KEY='<your_api_key>'")
         print("  On macOS/Linux: export DEEPGRAM_API_KEY=<your_api_key>")
-        sys.exit(1)
+        sys.exit(1)                                                                 #CAN REMOVE ALL OF THIS ONCE WE REMOVE THE API KEY
 
     # Initialize Deepgram client
-    deepgram = DeepgramClient(deepgram_api_key)
+    deepgram = DeepgramClient(deepgram_api_key) #REMOVE "deepgram_api_key" ONCE WE REMOVE THE API KEY
 
     # Prompt user for recording duration
     while True:
@@ -156,8 +111,6 @@ def main():
                 # 'diarize': True  # Uncomment if speaker diarization is desired
             }
 
-        print("completed")
-
         with open(audio_file_path, "rb") as file:
             buffer_data = file.read()
 
@@ -171,27 +124,13 @@ def main():
             )
             file_response = deepgram.listen.rest.v("1").transcribe_file(payload, options)
 
-            json = file_response.to_json(indent=4)
-            print(f"{json}")
+            js_file = json.loads(file_response.to_json(indent=4))["results"]["channels"][0]["alternatives"][0]["transcript"]
+            print(f"{js_file}")
         
 
     except Exception as e:
         print(f"Exception: {e}")
 
-    "print(finish.to_json(indent=4))"
-    """try:
-        response = asyncio.run(transcribe_audio(deepgram, audio_file_path))
-    except Exception as e:
-        print(f"An unexpected error occurred during transcription: {e}")
-        sys.exit(1)"""
-
-    # Extract and display transcript
-    """transcript = extract_transcript(response)
-    if transcript:
-        print("\n--- Transcription ---")
-        print(transcript)
-    else:
-        print("Transcription failed or no text was found.")"""
 
 if __name__ == "__main__":
     main()
