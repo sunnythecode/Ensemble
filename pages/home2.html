@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clueless - Your Personal AI Wardrobe Assistant</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            width: 100%;
+            background-color: #e0e0e5;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 30px;
+            align-items: center;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #4a4a4a;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid #4a90e2;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav a:hover {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #4a90e2;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .highlight {
+            color: #4a90e2;
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357ab8;
+        }
+
+        .arrow {
+            font-size: 2em;
+            margin-top: 15px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/100x40.png?text=Clueless+Logo" alt="Clueless Logo">
+        <nav>
+            <a href="#">Log In</a>
+            <a href="#">Sign Up</a>
+        </nav>
+    </header>
+
+    <main style="text-align: center;">
+        <h1>A Smarter Way to Style</h1>
+        <p><span class="highlight">Clueless</span> is your personal AI-powered assistant to organize and recommend the perfect wardrobe.</p>
+        <p>Get tailored outfit ideas and say goodbye to wardrobe confusion!</p>
+        <div class="arrow">⬇️</div>
+        <button>Explore Clueless Today</button>
+    </main>
+</body>
+</html>

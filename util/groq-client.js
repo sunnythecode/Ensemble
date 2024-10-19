@@ -8,7 +8,7 @@ function findFirstDigit(str) {
     return match ? match[0] : null; // Return the matched digit or null if not found
 }
 
-async function getRankingOfShirts(userID, context) {
+async function getRankingOfClothes(userID, context) {
     const shirts = await getClothesTypeByUserId(userID, "shirt");
     const pants = await getClothesTypeByUserId(userID, "pant");
 
@@ -82,4 +82,4 @@ async function getRankingSinglePiece(pieceElem, contextString) {
     return {Ranking: rank, Message: message}; 
 }
 
-const k = getRankingOfShirts("67134047645b972a0f1ecdb5");
+const k = getRankingOfClothes("67134047645b972a0f1ecdb5");
