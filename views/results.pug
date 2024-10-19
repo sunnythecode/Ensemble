@@ -13,15 +13,31 @@ html(lang="en")
         padding: 20px;
         display: flex;
         justify-content: center;
+        align-items: flex-start; /* Align items at the top */
+        height: 100vh;
+      }
+      .content-wrapper {
+        display: flex;
+        gap: 20px; /* Space between the two sections */
+        width: 80%;
+        max-width: 1200px;
       }
       .recommendation-container {
         background-color: #ffffff;
         padding: 2rem;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 600px;
+        flex: 2; /* Take more space compared to the transcript box */
         text-align: center;
+      }
+      .transcript-container {
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex: 1; /* Smaller than the recommendations section */
+        max-height: 400px;
+        overflow-y: auto; /* Allow scrolling if the transcript is long */
       }
       h1 {
         margin-bottom: 20px;
@@ -60,19 +76,24 @@ html(lang="en")
       }
 
   body
-    .recommendation-container
-      h1 Today's Outfit Recommendations
-      // Recommended Shirt
-      .item
-        h2 Recommended Shirt
-        img(src=clothes.BestShirt.base64Image alt="Recommended Shirt")
-        p Review: #{clothes.BestShirt.Message}
+    .content-wrapper
+      .recommendation-container
+        h1 Today's Outfit Recommendations
+        // Recommended Shirt
+        .item
+          h2 Recommended Shirt
+          img(src=clothes.BestShirt.base64Image alt="Recommended Shirt")
+          p Review: #{clothes.BestShirt.Message}
 
-      // Recommended Pant
-      .item
-        h2 Recommended Pant
-        img(src=clothes.BestPant.base64Image alt="Recommended Pant")
-        p Review: #{clothes.BestPant.Message}
+        // Recommended Pant
+        .item
+          h2 Recommended Pant
+          img(src=clothes.BestPant.base64Image alt="Recommended Pant")
+          p Review: #{clothes.BestPant.Message}
 
-      // Button to return to the upload page or perform other actions
-      button(onclick="window.location.href='/upload-clothes'") Go Back to Upload Clothes
+        // Button to return to the upload page or perform other actions
+        button(onclick="window.location.href='/upload-clothes'") Go Back to Upload Clothes
+
+      .transcript-container
+        h2 User's Transcript
+        p= t

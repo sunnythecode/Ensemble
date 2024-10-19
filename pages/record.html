@@ -16,14 +16,16 @@
             height: 100vh;
             margin: 0;
             background-image: url('../pages/image.jpg');
-            background-size: cover; /* Make the image cover the entire background */
-            background-position: center; /* Center the image */
+            background-size: cover;
+            background-position: center;
         }
+
         h1 {
             margin-bottom: 20px;
             font-size: 2.5em;
             color: #4a90e2;
         }
+
         .container {
             background: white;
             border-radius: 15px;
@@ -32,6 +34,7 @@
             text-align: center;
             width: 300px;
         }
+
         button {
             padding: 15px 20px;
             margin: 10px;
@@ -43,32 +46,69 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #357ab8;
         }
+
         audio {
             margin-top: 20px;
             display: block;
             width: 100%;
         }
+
         #downloadLink {
             display: none;
             margin-top: 10px;
             text-decoration: none;
             color: #4a90e2;
         }
+
         .recording-indicator {
             display: none;
             margin-top: 15px;
             font-size: 1.2em;
             color: red;
         }
+
+        /* New button container */
+        .button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        .update-button {
+            background-color: #50b3a2;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .update-button:hover {
+            background-color: #3a8f7f;
+        }
     </style>
 </head>
 <body>
 
+    <!-- New Button Container -->
+    <div class="button-container">
+        <a href="/upload">
+            <button class="update-button">Update Wardrobe</button>
+        </a>
+    </div>
+
     <div class="container">
-        <h1>Voice Memo Recorder</h1>
+        <h1>What are you planning to do today?</h1>
         <button id="recordButton">Start Recording</button>
         <button id="stopButton" disabled>Stop Recording</button>
         <div id="recordingIndicator" class="recording-indicator">Recording...</div>

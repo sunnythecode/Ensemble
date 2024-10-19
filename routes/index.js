@@ -84,7 +84,7 @@ router.get('/results', async (req, res) => {
 
       // Render the Pug template with the data
       const clothes = await getRankingOfClothes(userID, t);
-      res.render("results", {clothes} );
+      res.render("results", {clothes, t} );
     }
     
   } catch (error) {
@@ -192,7 +192,11 @@ router.get('/record/:userID', async (req, res) => {
   const idExists = await checkIdExists(req.params.userID);
   readFile('./pages/record.html', 'utf8', (err, html) => {
     if (idExists) {
-      res.send(html);
+      const modifiedHtml = html.replace(
+        '<a href="/upload">',
+        `<a href="/upload/${req.params.userID}">`
+      );
+      res.send(modifiedHtml);
     } else {
       res.status(404).json({ message: "Not logged in" });
     }

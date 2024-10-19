@@ -7,15 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
+            background-image: url('../pages/image.jpg');
+            background-size: cover; /* Make the image cover the entire background */
+            background-position: center; /* Center the image */
         }
         .upload-container {
             background-color: #ffffff;
             padding: 2rem;
+            text-align: center;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -30,12 +33,21 @@
             display: flex;
             flex-direction: column;
         }
-        label {
-            margin-bottom: 0.5rem;
-            color: #666;
+        .custom-file-input {
+            display: none; /* Hide the default file input */
         }
-        input[type="file"] {
+        .custom-file-label {
+            background-color: #50b3a2;
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
             margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .custom-file-label:hover {
+            background-color: #3a8f7f;
         }
         button {
             background-color: #50b3a2;
@@ -74,15 +86,16 @@
         <h1>Upload Clothes to Your Wardrobe</h1>
         <form action="/upload-clothes" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="<%= userId %>"> 
-            <div class="image-preview-container">
-                <label for="shirts">Select images of your shirts:</label>
-                <input type="file" id="shirts" name="shirts[]" accept="image/*" multiple required>
-                <div class="imagePreview" id="shirtPreview"></div>
-            </div>
             
             <div class="image-preview-container">
-                <label for="pants">Select images of your pants:</label>
-                <input type="file" id="pants" name="pants[]" accept="image/*" multiple required>
+                <label class="custom-file-label" for="shirts">Select images of your shirts</label>
+                <input type="file" id="shirts" class="custom-file-input" name="shirts[]" accept="image/*" multiple required>
+                <div class="imagePreview" id="shirtPreview"></div>
+            </div>
+
+            <div class="image-preview-container">
+                <label class="custom-file-label" for="pants">Select images of your pants</label>
+                <input type="file" id="pants" class="custom-file-input" name="pants[]" accept="image/*" multiple required>
                 <div class="imagePreview" id="pantPreview"></div>
             </div>
 
