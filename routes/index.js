@@ -84,7 +84,7 @@ router.get('/results', async (req, res) => {
 
       // Render the Pug template with the data
       const clothes = await getRankingOfClothes(userID, t);
-      res.render("results", {clothes, t} );
+      res.render("results", {clothes, t, userID} );
     }
     
   } catch (error) {
@@ -143,7 +143,7 @@ router.post('/upload-audio', upload.single('audio'), async (req, res) => {
   const audioBlob = new Blob([req.file.buffer], { type: 'audio/webm' });
 
   //const audioFilePath = path.join(__dirname, req.file.path);
-  const inputB = await audioBlob.arrayBuffer()
+  const inputB = await audioBlob.arrayBuffer();
   // Call the Deepgram API for transcription
   try {
     const { result, error } = await deepgram.listen.prerecorded.transcribeFile(

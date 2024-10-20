@@ -92,7 +92,7 @@ html(lang="en")
           p Review: #{clothes.BestPant.Message}
 
         // Button to return to the upload page or perform other actions
-        button(onclick="window.location.href='/upload-clothes'") Go Back to Upload Clothes
+        button(onclick=`window.location.href='/record/${userID}'`) Go Back to Upload Clothes
 
       .transcript-container
         h2 User's Transcript
