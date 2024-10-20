@@ -35,11 +35,11 @@ async function getRankingOfClothes(userID, context) {
         pant.Ranking > maxP.Ranking ? pant : maxP
     );
 
-    console.log(maxRankingShirt.name);
-    console.log(maxRankingShirt.Message);
+    // console.log(maxRankingShirt.name);
+    // console.log(maxRankingShirt.Message);
 
-    console.log(maxRankingPant.name);
-    console.log(maxRankingPant.Message);
+    // console.log(maxRankingPant.name);
+    // console.log(maxRankingPant.Message);
 
 
     return {BestShirt: maxRankingShirt, BestPant: maxRankingPant};
@@ -70,7 +70,7 @@ async function getRankingSinglePiece(pieceElem, contextString) {
             }
         ],
         "model": "llama-3.2-11b-vision-preview",
-        "temperature": 1,
+        "temperature": 0.6,
         "max_tokens": 1024,
         "top_p": 1,
         "stream": false,
@@ -79,8 +79,10 @@ async function getRankingSinglePiece(pieceElem, contextString) {
 
     const message = chatCompletion.choices[0].message.content;
     console.log(pieceElem.name);
-    console.log(message);
+    
     const rank = findFirstDigit(message);
+    console.log(rank);
+    console.log(message);
     return {Ranking: rank, Message: message}; 
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clueless - Your Personal AI Wardrobe Assistant</title>
+    <title>Ensemble - Your Personal AI Wardrobe Assistant</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -23,6 +23,7 @@
 
 
         header {
+            height: 80px;
             width: 100%;
             background-color: rgba(224, 224, 229, 0.9); /* Semi-transparent background */
             display: flex;
@@ -42,7 +43,7 @@
 
         header nav {
             display: flex; /* Use flexbox for nav */
-            gap: 20px; /* Space between links */
+            gap: 8px; /* Space between links */
         }
 
         header nav a {
@@ -54,6 +55,7 @@
             padding: 8px 15px;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-right: 20px;
         }
 
         header nav a:hover {
@@ -144,7 +146,7 @@
 </head>
 <body>
     <header>
-        <img src="../pages/Clueless.png" alt="Clueless Logo" style="height: 60px;">
+        <img src="../pages/ensemble_logo.png" alt="Ensemble Logo" style="height: 120px;">
         <nav>
             <a href="/login">Log In</a>
             <a href="/signup">Sign Up</a>
@@ -156,7 +158,9 @@
         <p>Ensemble is your personal AI-powered assistant to organize and recommend the perfect wardrobe.</p>
         <p>Get tailored outfit ideas and say goodbye to wardrobe confusion!</p>
         <div class="arrow">⬇️</div>
-        <button>Explore Ensemble Today</button>
+        <a href="/signup">
+            <button>Explore Ensemble Today</button>
+        </a>
     </main>
 </body>
 </html>
