@@ -117,6 +117,16 @@ async function uploadClothes(req, res) {
             await collection.insertMany(pantItems);
         }
 
+        if (req.files['shoes[]']) {
+            const shoeItems = req.files['shoes[]'].map(file => ({
+                name: file.originalname,
+                image: file.buffer,
+                userID: new ObjectId(userId),
+                type: 'shoes',
+            }));
+            await collection.insertMany(shoeItems);
+        }
+
         res.redirect(`/upload/${userId}`);
     } catch (error) {
         console.error('Error uploading images:', error);

@@ -11,6 +11,7 @@ function findFirstDigit(str) {
 async function getRankingOfClothes(userID, context) {
     const shirts = await getClothesTypeByUserId(userID, "shirt");
     const pants = await getClothesTypeByUserId(userID, "pant");
+    const shoes = await getClothesTypeByUserId(userID, "shoes");
 
 
     const updatedShirts = await Promise.all(
@@ -35,6 +36,17 @@ async function getRankingOfClothes(userID, context) {
         pant.Ranking > maxP.Ranking ? pant : maxP
     );
 
+    const updatedShoes = await Promise.all(
+        shoes.map(async (shoe) => {
+            const ranking = await getRankingSinglePiece(shoe, context);
+            return { ...shoe, Ranking: ranking.Ranking, Message: ranking.Message };
+        })
+    );
+
+    const maxRankingShoe = updatedShoes.reduce((max, shoeMax) => 
+        shoeMax.Ranking > max.Ranking ? shoeMax : max
+    );
+
     // console.log(maxRankingShirt.name);
     // console.log(maxRankingShirt.Message);
 
@@ -42,7 +54,7 @@ async function getRankingOfClothes(userID, context) {
     // console.log(maxRankingPant.Message);
 
 
-    return {BestShirt: maxRankingShirt, BestPant: maxRankingPant};
+    return {BestShirt: maxRankingShirt, BestPant: maxRankingPant, BestShoe: maxRankingShoe};
 
 }
 async function getRankingSinglePiece(pieceElem, contextString) {
@@ -69,10 +81,10 @@ async function getRankingSinglePiece(pieceElem, contextString) {
                 "content": ""
             }
         ],
-        "model": "llama-3.2-11b-vision-preview",
-        "temperature": 0.6,
+        "model": "llama-3.2-90b-vision-preview",
+        "temperature": 0.7,
         "max_tokens": 1024,
-        "top_p": 1,
+        "top_p": 0.6,
         "stream": false,
         "stop": null
     });

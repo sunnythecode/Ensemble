@@ -95,6 +95,11 @@ html(lang="en")
           img(src=clothes.BestPant.base64Image alt="Recommended Pant")
           p Review: #{clothes.BestPant.Message}
 
+        .item
+          h2 Recommended Shoe
+          img(src=clothes.BestShoe.base64Image alt="Recommended Shoe")
+          p Review: #{clothes.BestShoe.Message}
+
         // Button to return to the upload page or perform other actions
         button(onclick=`window.location.href='/record/${userID}'`) Go Back to Record a voice memo
 

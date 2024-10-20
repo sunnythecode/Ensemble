@@ -110,9 +110,10 @@ router.get('/upload/:userID', async (req, res) => {
       // Retrieve shirts and pants from MongoDB
       const shirts = await getClothesTypeByUserId(userId, "shirt");
       const pants = await getClothesTypeByUserId(userId, "pant");
+      const shoes = await getClothesTypeByUserId(userId, "shoes");
 
       // Render the Pug template with the data
-      res.render('upload', { userId, shirts, pants });
+      res.render('upload', { userId, shirts, pants, shoes });
     }
     
   } catch (error) {
@@ -132,7 +133,7 @@ router.get('/upload/:userID', async (req, res) => {
   // })
 });
 
-router.post('/upload-clothes', upload.fields([{ name: 'shirts[]' }, { name: 'pants[]' }]), uploadClothes);
+router.post('/upload-clothes', upload.fields([{ name: 'shirts[]' }, { name: 'pants[]' }, { name: 'shoes[]' }]), uploadClothes);
 
 router.post('/upload-audio', upload.single('audio'), async (req, res) => {
   if (!req.file) {

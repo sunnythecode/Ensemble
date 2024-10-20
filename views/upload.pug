@@ -130,7 +130,7 @@ html(lang="en")
         input(type="hidden" name="userId" value=userId)
 
         //- Shirt Carousel
-        label(for="shirts") Select Shirts:
+        label(for="shirts") Shirts:
         .carousel-container
           button(type="button" onclick="scrollLeft('shirtCarousel')") ←
           .carousel#shirtCarousel
@@ -143,7 +143,7 @@ html(lang="en")
         .preview-container#shirtPreview
 
         //- Pant Carousel
-        label(for="pants") Select Pants:
+        label(for="pants") Pants:
         .carousel-container
           button(type="button" onclick="scrollLeft('pantCarousel')") ←
           .carousel#pantCarousel
@@ -154,6 +154,18 @@ html(lang="en")
         .plus-button(type="button" onclick="document.getElementById('pants').click()") +
 
         .preview-container#pantPreview
+
+        label(for="shoes") Shoes:
+        .carousel-container
+          button(type="button" onclick="scrollLeft('shoeCarousel')") ←
+          .carousel#shoeCarousel
+            each shoe in shoes
+              img(src=shoe.base64Image alt="Shoe")
+          button(type="button" onclick="scrollRight('shoeCarousel')") →
+        input#shoes(type="file" name="shoes[]" accept="image/*" multiple hidden onchange="previewFiles(this, 'shoePreview')")
+        .plus-button(type="button" onclick="document.getElementById('shoes').click()") +
+
+        .preview-container#shoePreview
 
         button(type="submit") Upload Clothes
 
