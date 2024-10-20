@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
     "test": "NODE_ENV=sandbox node ./bin/www"
   },
   "dependencies": {

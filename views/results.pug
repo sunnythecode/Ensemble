@@ -15,6 +15,10 @@ html(lang="en")
         justify-content: center;
         align-items: flex-start; /* Align items at the top */
         height: 100vh;
+        background-image: url('../pages/image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
       }
       .content-wrapper {
         display: flex;
@@ -92,7 +96,7 @@ html(lang="en")
           p Review: #{clothes.BestPant.Message}
 
         // Button to return to the upload page or perform other actions
-        button(onclick=`window.location.href='/record/${userID}'`) Go Back to Upload Clothes
+        button(onclick=`window.location.href='/record/${userID}'`) Go Back to Record a voice memo
 
       .transcript-container
         h2 User's Transcript

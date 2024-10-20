@@ -117,7 +117,7 @@ async function uploadClothes(req, res) {
             await collection.insertMany(pantItems);
         }
 
-        res.json({ message: 'Images uploaded successfully!' });
+        res.redirect(`/upload/${userId}`);
     } catch (error) {
         console.error('Error uploading images:', error);
         res.status(500).json({ message: 'Error uploading images' });
