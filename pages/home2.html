@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensemble - Your Personal AI Wardrobe Assistant</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9; /* Fallback color */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent body overflow */
+            background-image: url('../pages/image.jpg');
+            background-size: cover; /* Make the image cover the entire background */
+            background-position: center; /* Center the image */
+        }
+
+
+        header {
+            height: 80px;
+            width: 100%;
+            background-color: rgba(224, 224, 229, 0.9); /* Semi-transparent background */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0px;
+            align-items: center;
+            position: fixed; /* Keep header fixed at the top */
+            top: 0; /* Position it at the top */
+            left: 0;
+            right: 0;
+            z-index: 100; /* Ensure it's above other elements */
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        header nav {
+            display: flex; /* Use flexbox for nav */
+            gap: 8px; /* Space between links */
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid #4a90e2;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-right: 20px;
+        }
+
+        header nav a:hover {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        main {
+            text-align: center;
+            color: white;
+            padding-top: 80px; /* Prevent content from being hidden behind the fixed header */
+            width: 100%; /* Ensure main takes full width */
+            height: calc(100vh - 80px); /* Adjust for fixed header height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .highlight {
+            color: #4a90e2;
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357ab8;
+        }
+
+        .arrow {
+            font-size: 2em;
+            margin-top: 15px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+
+            header {
+                flex-direction: column; /* Stack header items vertically on smaller screens */
+                align-items: center; /* Center items */
+            }
+
+            header nav {
+                margin-top: 10px; /* Space between logo and nav */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../pages/ensemble_logo.png" alt="Ensemble Logo" style="height: 120px;">
+        <nav>
+            <a href="/login">Log In</a>
+            <a href="/signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>A Smarter Way to Style</h1>
+        <p>Ensemble is your personal AI-powered assistant to organize and recommend the perfect wardrobe.</p>
+        <p>Get tailored outfit ideas and say goodbye to wardrobe confusion!</p>
+        <div class="arrow">⬇️</div>
+        <a href="/signup">
+            <button>Explore Ensemble Today</button>
+        </a>
+    </main>
+</body>
+</html>

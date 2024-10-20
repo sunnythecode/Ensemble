@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Memo Recorder</title>
+    <link rel="stylesheet" href="/pages/style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('../pages/image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #4a90e2;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+        }
+
+        button {
+            padding: 15px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357ab8;
+        }
+
+        audio {
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        #downloadLink {
+            display: none;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #4a90e2;
+        }
+
+        .recording-indicator {
+            display: none;
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: red;
+        }
+
+        /* New button container */
+        .button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        .update-button {
+            background-color: #50b3a2;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .update-button:hover {
+            background-color: #3a8f7f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- New Button Container -->
+    <div class="button-container">
+        <a href="/upload">
+            <button class="update-button">Update Wardrobe</button>
+        </a>
+    </div>
+
+    <div class="container">
+        <h1>What are you planning to do today?</h1>
+        <button id="recordButton">Start Recording</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+        <div id="recordingIndicator" class="recording-indicator">Recording...</div>
+        <audio id="audioPlayer" controls style="display: none;"></audio>
+        <a id="downloadLink" download="voice_memo.webm">Download Memo</a>
+        <button id="submitButton">Submit Recording</button>
+        
+        <div id="transcriptionOutput"></div>
+    </div>
+    <div class="loader loader-hidden"></div>
+    <script src="/scripts/record.js"></script>
+    <script src="/pages/script.js"></script>
+
+    
+    
+</body>
+</html>

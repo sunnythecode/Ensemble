@@ -1,0 +1,26 @@
+{
+  "name": "node-payment",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "test": "NODE_ENV=sandbox node ./bin/www"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^3.8.1",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "debug": "*",
+    "dotenv": "^8.2.0",
+    "express": "^4.21.1",
+    "groq-sdk": "^0.7.0",
+    "mongodb": "^6.9.0",
+    "morgan": "*",
+    "multer": "^1.4.5-lts.1",
+    "pug": "^3.0.2",
+    "square": "^33.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

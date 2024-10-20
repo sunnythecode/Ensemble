@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensemble: Your Personal, Virtual Stylist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header h1 {
+            margin: 0;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            color: #fff;
+            background: #e8491d;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #ff6a3c;
+        }
+        .feature-box {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ensemble: Your Personal, Virtual Stylist</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="feature-box">
+            <h2>Welcome to Your Personal, Virtual Stylist</h2>
+            <p>Get personalized outfit recommendations based on your plans for the day!</p>
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn">Sign Up</a>
+        </div>
+
+        <div class="feature-box">
+            <h2>Upload Your Wardrobe</h2>
+            <p>Add pictures of your clothes to your digital wardrobe.</p>
+            <button class="btn">Upload Clothes</button>
+        </div>
+
+        <div class="feature-box">
+            <h2>Get Outfit Recommendations</h2>
+            <p>Tell us about your day, and we'll suggest the perfect outfit!</p>
+            <button class="btn">Record Your Plans</button>
+        </div>
+
+        <div class="feature-box">
+            <h2>Your Recommendations</h2>
+            <p>Based on your voice note, here are today's outfit suggestions:</p>
+            <div id="recommendations">
+                <!-- Recommendations will be dynamically inserted here -->
+                <p>Record your plans to see recommendations!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

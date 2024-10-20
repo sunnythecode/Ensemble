@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Clothes - Wardrobe Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            background-image: url('../pages/image.jpg');
+            background-size: cover; /* Make the image cover the entire background */
+            background-position: center; /* Center the image */
+        }
+        .upload-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .custom-file-input {
+            display: none; /* Hide the default file input */
+        }
+        .custom-file-label {
+            background-color: #50b3a2;
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .custom-file-label:hover {
+            background-color: #3a8f7f;
+        }
+        button {
+            background-color: #50b3a2;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #3a8f7f;
+        }
+        .image-preview-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+        .imagePreview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        .imagePreview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload Clothes to Your Wardrobe</h1>
+        <form action="/upload-clothes" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="userId" value="<%= userId %>"> 
+            
+            <div class="image-preview-container">
+                <label class="custom-file-label" for="shirts">Select images of your shirts</label>
+                <input type="file" id="shirts" class="custom-file-input" name="shirts[]" accept="image/*" multiple required>
+                <div class="imagePreview" id="shirtPreview"></div>
+            </div>
+
+            <div class="image-preview-container">
+                <label class="custom-file-label" for="pants">Select images of your pants</label>
+                <input type="file" id="pants" class="custom-file-input" name="pants[]" accept="image/*" multiple required>
+                <div class="imagePreview" id="pantPreview"></div>
+            </div>
+
+            <button type="submit">Upload Clothes</button>
+        </form>
+    </div>
+
+    <script>
+        const shirtInput = document.getElementById('shirts');
+        const shirtPreview = document.getElementById('shirtPreview');
+
+        shirtInput.addEventListener('change', function() {
+            shirtPreview.innerHTML = '';
+            const files = this.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) { continue; }
+
+                const img = document.createElement('img');
+                img.file = file;
+                shirtPreview.appendChild(img);
+
+                const reader = new FileReader();
+                reader.onload = (function(aImg) { 
+                    return function(e) { 
+                        aImg.src = e.target.result; 
+                    }; 
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const pantInput = document.getElementById('pants');
+        const pantPreview = document.getElementById('pantPreview');
+
+        pantInput.addEventListener('change', function() {
+            pantPreview.innerHTML = '';
+            const files = this.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) { continue; }
+
+                const img = document.createElement('img');
+                img.file = file;
+                pantPreview.appendChild(img);
+
+                const reader = new FileReader();
+                reader.onload = (function(aImg) { 
+                    return function(e) { 
+                        aImg.src = e.target.result; 
+                    }; 
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
