@@ -31,8 +31,8 @@ async function getRankingOfClothes(userID, context) {
         })
     );
 
-    const maxRankingPant = updatedPants.reduce((max, pant) => 
-        pant.Ranking > max.Ranking ? pant : max
+    const maxRankingPant = updatedPants.reduce((maxP, pant) => 
+        pant.Ranking > maxP.Ranking ? pant : maxP
     );
 
     console.log(maxRankingShirt.name);
